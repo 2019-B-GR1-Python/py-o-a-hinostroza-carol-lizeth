@@ -1,2 +1,0 @@
-Carol Oña
-Lizeth Hinostroza

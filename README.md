@@ -1,1 +1,0 @@
-# py-o-a-hinostroza-carol-lizeth
