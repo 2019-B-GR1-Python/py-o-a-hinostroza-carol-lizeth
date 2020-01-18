@@ -2,7 +2,7 @@ import scrapy
 
 def archivo(titulo, link, imagen, precio):
     import csv
-    with open('Libros_Oña_Carol1.csv','a', newline='') as csvfile:
+    with open('Libros_Oña_Carol.csv','a', newline='') as csvfile:
         spamwriter = csv.writer(csvfile, delimiter=',')
 
         data = list(zip(titulo, link, imagen, precio))
@@ -95,8 +95,6 @@ class IntroSpider(scrapy.Spider):
     'http://books.toscrape.com/catalogue/category/books/crime_51/index.html'
     ]
 
-
-
     def start_requests (self):
         for url in self.urls:
             yield scrapy.Request(url=url)
@@ -111,14 +109,14 @@ class IntroSpider(scrapy.Spider):
         imagenes = etiqueta_contenedora.css("div.image_container > a > img::attr(src)").extract()
         lista_imagenes=[]
         for p in imagenes:
-            p = 'http://books.toscrape.com/catalogue'
+            p = 'http://books.toscrape.com/catalogue' + p[8:]
             lista_imagenes.append(p)
         print(lista_imagenes)
 
         links = etiqueta_contenedora.css('div > a::attr(href)').extract()
         lista_links=[]
         for p in links:
-            p = 'http://books.toscrape.com/catalogue'
+            p = 'http://books.toscrape.com/catalogue' + p[8:]
             lista_links.append(p)
         print(lista_links)
 
@@ -130,6 +128,4 @@ class IntroSpider(scrapy.Spider):
             lista_precios.append(p)
         [float(i) for i in lista_precios]
 
-
-        
         archivo(titulos,lista_links,lista_imagenes,lista_precios)
