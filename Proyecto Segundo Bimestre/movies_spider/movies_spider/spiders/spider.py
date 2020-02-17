@@ -17,6 +17,7 @@ class IntroSpider(scrapy.Spider):
         'https://www.imdb.com/list/ls042050393/'
     ]
 
+
     def start_requests (self):
         for url in self.urls:
             yield scrapy.Request(url=url)
